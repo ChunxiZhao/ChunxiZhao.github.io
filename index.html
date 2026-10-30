@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Chunxi Zhao — SLAM and 3D Perception Engineer & Researcher working on LiDAR mapping, localization, and 3D reconstruction." />
+  <meta name="theme-color" content="#f7f9fc" />
+  <title>Chunxi Zhao | SLAM & 3D Perception</title>
+  <style>
+    :root { --ink: #18253e; --muted: #63738c; --line: #e5eaf2; --accent: #3566db; --accent-soft: #eaf0ff; --paper: #f7f9fc; --white: #fff; --radius: 18px; }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Arial, sans-serif; font-size: 16px; line-height: 1.65; }
+    a { color: inherit; }
+    a:focus-visible { outline: 3px solid #86a5ff; outline-offset: 4px; border-radius: 5px; }
+    .wrap { width: min(1080px, calc(100% - 48px)); margin-inline: auto; }
+    .nav { background: rgba(255,255,255,.82); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 20; }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; min-height: 68px; gap: 20px; }
+    .brand { font-size: 18px; letter-spacing: -.6px; font-weight: 750; text-decoration: none; }
+    .nav-links { display: flex; flex-wrap: wrap; align-items: center; gap: 26px; }
+    .nav-links a { font-size: 13px; font-weight: 600; text-decoration: none; color: #53627a; }
+    .nav-links a:hover, .inline-link:hover { color: var(--accent); }
+    .hero { padding: 84px 0 68px; display: grid; grid-template-columns: 1.12fr .88fr; gap: 55px; align-items: center; }
+    .eyebrow { text-transform: uppercase; letter-spacing: .15em; font-size: 11px; font-weight: 800; color: var(--accent); }
+    h1 { font-size: clamp(44px, 5.6vw, 68px); letter-spacing: -.065em; line-height: 1.09; margin: 17px 0 13px; font-weight: 790; }
+    .hero-title { color: #354969; font-size: clamp(18px, 2vw, 22px); line-height: 1.5; font-weight: 520; letter-spacing: -.015em; max-width: 620px; margin: 0 0 22px; }
+    .hero-desc { color: var(--muted); max-width: 620px; margin: 0 0 25px; font-size: 15px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 29px; }
+    .chip { padding: 6px 11px; border: 1px solid #dfe7f2; color: #536784; background: #fff; border-radius: 99px; font-size: 12px; font-weight: 600; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+    .button { border-radius: 10px; background: var(--accent); color: white; padding: 11px 17px; font-size: 13px; text-decoration: none; font-weight: 700; border: 1px solid var(--accent); display: inline-flex; align-items: center; justify-content: center; min-height: 43px; }
+    .button.secondary { color: var(--accent); background: var(--white); border-color: #cad7ef; }
+    .button:hover { filter: brightness(.94); }
+    .hero-art { display: flex; align-items: center; justify-content: center; min-height: 370px; border: 1px solid #dbe5f2; border-radius: 28px; background: radial-gradient(circle at 64% 25%, #e0eafe, transparent 55%), linear-gradient(145deg,#f7faff,#e5edf9); box-shadow: 0 24px 60px -36px #8ea5c9; overflow: hidden; position: relative; }
+    .hero-art::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(#cbd8ee 1px, transparent 1px),linear-gradient(90deg,#cbd8ee 1px, transparent 1px); background-size: 31px 31px; opacity: .22; }
+    .art-label { position: absolute; left: 24px; bottom: 23px; color: #7588a7; letter-spacing: .13em; text-transform: uppercase; font-size: 10px; font-weight: 750; }
+    .art-svg { width: 100%; max-width: 430px; position: relative; filter: drop-shadow(0 9px 14px #acbfe6a0); }
+    section { scroll-margin-top: 98px; }
+    .section { padding: 36px 0 66px; }
+    .section-header { display: flex; align-items: end; justify-content: space-between; gap: 18px; margin-bottom: 27px; }
+    .section-header h2 { font-size: 28px; margin: 7px 0 0; letter-spacing: -.045em; line-height: 1.2; }
+    .section-header p { margin: 0; color: var(--muted); font-size: 13px; max-width: 360px; }
+    .projects { display: grid; grid-template-columns: repeat(3, 1fr); gap: 17px; }
+    .project { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; transition: transform .2s ease, box-shadow .2s ease; }
+    .project:hover { transform: translateY(-3px); box-shadow: 0 13px 32px -25px #516583; }
+    .project-visual { height: 152px; display: flex; align-items: flex-end; justify-content: space-between; padding: 19px; position: relative; overflow: hidden; }
+    .project-visual::before, .project-visual::after { content: ""; position: absolute; border: 1px solid rgba(255,255,255,.55); transform: rotate(-23deg); }
+    .project-visual::before { width: 180px; height: 180px; border-radius: 38px; top: -68px; right: -30px; }
+    .project-visual::after { width: 160px; height: 95px; border-radius: 38px; top: 30px; right: 50px; }
+    .v-one { background: linear-gradient(130deg,#102c61,#3977be); }
+    .v-two { background: linear-gradient(130deg,#135957,#4babb0); }
+    .v-three { background: linear-gradient(130deg,#554c87,#9c87c9); }
+    .visual-label { position: relative; z-index: 1; font-size: 12px; font-weight: 750; color: #fff; letter-spacing: .04em; }
+    .visual-index { position: relative; z-index: 1; color: #ffffff99; font-size: 15px; font-weight: 700; }
+    .project-body { padding: 22px 21px 24px; }
+    .project h3 { font-size: 18px; line-height: 1.35; margin: 0 0 11px; letter-spacing: -.025em; }
+    .project p { font-size: 13px; color: var(--muted); margin: 0 0 18px; min-height: 82px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag { font-size: 10px; color: #486189; background: #edf2fb; padding: 5px 8px; border-radius: 6px; font-weight: 700; }
+    .two-col { display: grid; grid-template-columns: .85fr 1.15fr; gap: 45px; align-items: start; }
+    .two-col p { color: var(--muted); font-size: 14px; margin: 0 0 15px; }
+    .timeline { display: grid; gap: 13px; }
+    .timeline-item { border: 1px solid var(--line); background: var(--white); border-radius: 13px; padding: 19px 21px; }
+    .timeline-item h3 { margin: 0 0 3px; font-size: 16px; }
+    .timeline-item p { margin: 0; font-size: 13px; }
+    .timeline-item .sub { font-size: 12px; color: var(--accent); font-weight: 700; margin-bottom: 7px; }
+    .contact { padding: 33px; background: #eaf0fa; border: 1px solid #d9e4f2; border-radius: 22px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .contact h2 { margin: 0 0 4px; letter-spacing: -.045em; font-size: 25px; }
+    .contact p { margin: 0; color: #6b7b94; font-size: 13px; }
+    .footer { padding: 35px 0 42px; color: #8a99ae; font-size: 11px; display: flex; justify-content: space-between; gap: 10px; border-top: 1px solid var(--line); margin-top: 40px; }
+    .footer a { text-decoration: none; color: #6e809e; }
+    .socials { display: flex; flex-wrap: wrap; gap: 15px; margin-top: 15px; }
+    .socials a { text-decoration: none; font-size: 13px; color: var(--accent); font-weight: 650; }
+    [hidden] { display: none !important; }
+    @media(max-width: 850px) { .hero { grid-template-columns: 1fr; padding-top: 55px; gap: 25px; } .hero-art { min-height: 270px; } .art-svg { max-width: 340px; } .projects { grid-template-columns: 1fr 1fr; } .two-col { grid-template-columns: 1fr; gap: 15px; } }
+    @media(max-width: 590px) { .wrap { width: min(100% - 32px, 1080px); } .nav-inner { min-height: 62px; } .nav-links { gap: 12px; } .nav-links a { font-size: 11px; } .hero { padding-top: 40px; } h1 { font-size: 49px; } .section { padding-bottom: 40px; } .section-header { align-items: start; display: block; } .section-header p { margin-top: 9px; } .projects { grid-template-columns: 1fr; } .project p { min-height: auto; } .project-visual { height: 120px; } .contact { padding: 23px; align-items: start; flex-direction: column; } .footer { flex-direction: column; } }
+    @media(prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .project { transition: none; } }
+  </style>
+<script type="text/javascript" nonce="058c3bdee1bc46cc9f2e9852d76" src="//local.adguard.org?ts=1793391752445&amp;type=content-script&amp;dmn=chatgpt.com&amp;url=https%3A%2F%2Fchatgpt.com%2Fbackend-api%2Festuary%2Fcontent%3Fid%3Dfile_000000001bdc81f5bd1ed18c3fa7b5ed%26fn%3Dindex.html%26cd%3Dattachment%26ts%3D498164%26p%3Dfs%26cid%3D1%26sig%3D8c2d0b851dbe1403c045344de7d9b66f67bbdcc471813baae552028e226e8d79%26v%3D0&amp;app=chrome.exe&amp;css=2&amp;js=1&amp;rel=1&amp;rji=1&amp;sbe=1&amp;stealth=1&amp;st-wrtc&amp;st-dnt"></script><script type="text/javascript" nonce="058c3bdee1bc46cc9f2e9852d76" src="//local.adguard.org?ts=1793391752445&amp;name=AdGuard%20Extra&amp;name=AdGuard%20Popup%20Blocker&amp;type=user-script"></script></head>
+<body>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#top">CZ<span style="color:var(--accent)">.</span></a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#projects">Projects</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top" class="wrap">
+    <div class="hero">
+      <div>
+        <div class="eyebrow">Ph.D. Researcher · Purdue University</div>
+        <h1>Chunxi Zhao<span style="color:var(--accent)">.</span></h1>
+        <p class="hero-title">SLAM and 3D Perception Engineer &amp; Researcher</p>
+        <p class="hero-desc">I work on localization, LiDAR mapping, and 3D reconstruction, combining practical engineering experience with research in large-scale spatial perception systems.</p>
+        <div class="chips">
+          <span class="chip">LiDAR SLAM</span><span class="chip">Localization &amp; Mapping</span><span class="chip">3D Perception</span><span class="chip">3D Reconstruction</span>
+        </div>
+        <div class="actions">
+          <a class="button" href="#projects">Explore projects ↓</a>
+          <a class="button secondary" id="resume-link" href="#" hidden>Download résumé</a>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <svg class="art-svg" viewBox="0 0 450 370" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="blue" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#376de2"/><stop offset="1" stop-color="#61a5ea"/></linearGradient>
+            <linearGradient id="cyan" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#63a9c4"/><stop offset="1" stop-color="#316db4"/></linearGradient>
+          </defs>
+          <g fill="none" stroke="#92b5e3" stroke-width="1" opacity=".33">
+            <path d="M38 255L224 344L411 250L231 153Z"/><path d="M38 255V179L231 87L411 179V250"/><path d="M231 87V153"/>
+            <path d="M76 236L258 325M113 218L296 306M151 199L334 287M187 180L371 269M77 274L269 172M117 294L307 193M154 314L346 212"/>
+          </g>
+          <g fill="none" stroke="url(#blue)" stroke-width="2.2" opacity=".93">
+            <path d="M111 225L225 288L343 222L225 157Z"/><path d="M111 225L110 150L225 86L344 151L343 222"/><path d="M225 86L225 157L225 288"/><path d="M110 150L225 214L344 151" stroke-dasharray="5 6" opacity=".58"/>
+            <path d="M153 169L225 132L297 169M152 205L225 245L299 205" opacity=".65"/>
+          </g>
+          <g id="cloud" fill="url(#cyan)">
+            <circle cx="109" cy="223" r="4.2"/><circle cx="121" cy="216" r="2.7"/><circle cx="137" cy="230" r="3.1"/><circle cx="151" cy="238" r="3"/><circle cx="165" cy="249" r="4"/><circle cx="185" cy="259" r="3.1"/><circle cx="207" cy="274" r="3.7"/><circle cx="224" cy="287" r="4.5"/><circle cx="241" cy="277" r="3.8"/><circle cx="258" cy="267" r="2.8"/><circle cx="279" cy="254" r="3.7"/><circle cx="302" cy="241" r="3.5"/><circle cx="319" cy="231" r="3"/><circle cx="342" cy="221" r="4"/>
+            <circle cx="112" cy="151" r="4.1"/><circle cx="128" cy="141" r="3.1"/><circle cx="150" cy="128" r="3.6"/><circle cx="168" cy="117" r="2.8"/><circle cx="187" cy="108" r="4"/><circle cx="204" cy="96" r="3.5"/><circle cx="226" cy="85" r="4.8"/><circle cx="247" cy="98" r="3.1"/><circle cx="266" cy="110" r="4"/><circle cx="283" cy="117" r="3.1"/><circle cx="304" cy="130" r="3.9"/><circle cx="325" cy="142" r="2.9"/><circle cx="342" cy="152" r="4.1"/>
+            <circle cx="110" cy="180" r="2.7"/><circle cx="110" cy="198" r="3"/><circle cx="226" cy="125" r="3"/><circle cx="225" cy="157" r="4.5"/><circle cx="224" cy="184" r="3"/><circle cx="224" cy="215" r="3.6"/><circle cx="225" cy="245" r="3.3"/><circle cx="344" cy="181" r="2.8"/><circle cx="344" cy="196" r="3.4"/><circle cx="155" cy="169" r="3.8"/><circle cx="179" cy="184" r="2.7"/><circle cx="202" cy="202" r="3.3"/><circle cx="246" cy="201" r="3"/><circle cx="272" cy="185" r="4"/><circle cx="300" cy="170" r="3.7"/>
+          </g>
+          <g fill="#aac4ec" opacity=".83">
+            <circle cx="99" cy="241" r="2"/><circle cx="123" cy="244" r="1.9"/><circle cx="146" cy="255" r="1.8"/><circle cx="176" cy="275" r="2"/><circle cx="217" cy="304" r="1.8"/><circle cx="263" cy="289" r="2.2"/><circle cx="302" cy="261" r="1.9"/><circle cx="325" cy="243" r="2"/><circle cx="360" cy="224" r="1.8"/><circle cx="96" cy="165" r="1.7"/><circle cx="143" cy="144" r="1.8"/><circle cx="183" cy="119" r="2"/><circle cx="218" cy="69" r="1.9"/><circle cx="265" cy="92" r="2.1"/><circle cx="306" cy="110" r="1.9"/><circle cx="356" cy="149" r="1.8"/>
+          </g>
+        </svg>
+        <div class="art-label">Spatial perception · 3D geometry</div>
+      </div>
+    </div>
+
+    <section id="projects" class="section">
+      <div class="section-header">
+        <div><div class="eyebrow">Selected work</div><h2>Projects &amp; research</h2></div>
+        <p>Representative work across LiDAR mapping, forest reconstruction, and spatial AI.</p>
+      </div>
+      <div class="projects">
+        <article class="project">
+          <div class="project-visual v-one"><span class="visual-label">Mapping &amp; Optimization</span><span class="visual-index">01</span></div>
+          <div class="project-body">
+            <h3>Multi-Platform LiDAR Mapping</h3>
+            <p>Developing methods to improve consistency across mobile LiDAR surveys through geometric constraints and multi-stage optimization.</p>
+            <div class="tags"><span class="tag">LiDAR SLAM</span><span class="tag">Registration</span><span class="tag">Optimization</span></div>
+          </div>
+        </article>
+        <article class="project">
+          <div class="project-visual v-two"><span class="visual-label">Forest Mapping</span><span class="visual-index">02</span></div>
+          <div class="project-body">
+            <h3>Multi-Mission Forest Reconstruction</h3>
+            <p>Integrating repeated under-canopy mapping missions to support more consistent tree-level mapping and forest inventory.</p>
+            <div class="tags"><span class="tag">Point Clouds</span><span class="tag">Sensor Fusion</span><span class="tag">3D Mapping</span></div>
+          </div>
+        </article>
+        <article class="project">
+          <div class="project-visual v-three"><span class="visual-label">Neural Reconstruction</span><span class="visual-index">03</span></div>
+          <div class="project-body">
+            <h3>LiDAR-Assisted 3D Gaussian Splatting</h3>
+            <p>Exploring geometry-informed 3D scene reconstruction using image-based rendering and LiDAR-derived structure.</p>
+            <div class="tags"><span class="tag">3DGS</span><span class="tag">Reconstruction</span><span class="tag">Geometry</span></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <div class="section-header"><div><div class="eyebrow">Background</div><h2>About me</h2></div></div>
+      <div class="two-col">
+        <div>
+          <p>I'm a Ph.D. researcher at Purdue University working at the intersection of geometric perception, localization, and 3D mapping.</p>
+          <p>My background includes five years of industry experience alongside academic research, with a focus on building reliable methods for real-world spatial data.</p>
+          <div class="socials" id="social-links"></div>
+        </div>
+        <div class="timeline">
+          <div class="timeline-item"><h3>Purdue University</h3><div class="sub">Ph.D. Research</div><p>LiDAR-based mapping, 3D reconstruction, geometric optimization, and multi-sensor data integration.</p></div>
+          <div class="timeline-item"><h3>DeepRoute.ai</h3><div class="sub">Industry Experience</div><p>Prior industry work in autonomous-driving-related perception and mapping systems.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="contact">
+        <div><div class="eyebrow">Get in touch</div><h2>Let's connect.</h2><p>Open to opportunities in SLAM, 3D perception, localization, and spatial computing.</p></div>
+        <a class="button" id="contact-button" href="mailto:" hidden>Email me →</a>
+        <span id="contact-prompt" style="color:#687c98;font-size:13px">Add your email in the configuration to enable contact.</span>
+      </div>
+    </section>
+  </main>
+  <footer class="wrap footer"><span>© <span id="year">2026</span> Chunxi Zhao</span><span>Built with GitHub Pages · <a href="#top">Back to top ↑</a></span></footer>
+
+  <script>
+    /* ============================================================
+       EDIT ONLY THE VALUES BELOW TO ADD YOUR OWN CONTACT LINKS.
+       Leave any value as "" to hide that link automatically.
+       To add a resume, upload a PDF named resume.pdf and use
+       resume: "resume.pdf".
+       ============================================================ */
+    const CONTACT = {
+      email: "",
+      resume: "",
+      github: "",
+      linkedin: "",
+      scholar: ""
+    };
+
+    const resumeLink = document.getElementById("resume-link");
+    if (CONTACT.resume) { resumeLink.href = CONTACT.resume; resumeLink.hidden = false; }
+    const contactButton = document.getElementById("contact-button");
+    if (CONTACT.email) { contactButton.href = "mailto:" + CONTACT.email; contactButton.hidden = false; document.getElementById("contact-prompt").hidden = true; }
+    const socialContainer = document.getElementById("social-links");
+    for (const [key, label] of [["github","GitHub ↗"],["linkedin","LinkedIn ↗"],["scholar","Google Scholar ↗"]]) {
+      if (CONTACT[key]) {
+        const link = document.createElement("a");
+        link.href = CONTACT[key]; link.textContent = label;
+        link.rel = "noopener noreferrer"; link.target = "_blank";
+        socialContainer.appendChild(link);
+      }
+    }
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
