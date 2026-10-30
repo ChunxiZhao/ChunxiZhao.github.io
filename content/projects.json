@@ -1,0 +1,47 @@
+[
+  {
+    "category": "Mapping & Optimization",
+    "title": "Multi-Platform LiDAR Mapping",
+    "description": "Developing methods to improve consistency across mobile LiDAR surveys through geometric constraints and multi-stage optimization.",
+    "tags": [
+      "LiDAR SLAM",
+      "Registration",
+      "Optimization"
+    ],
+    "image": "",
+    "image_alt": "",
+    "paper_url": "",
+    "demo_url": "",
+    "code_url": ""
+  },
+  {
+    "category": "Forest Mapping",
+    "title": "Multi-Mission Forest Reconstruction",
+    "description": "Integrating repeated under-canopy mapping missions to support more consistent tree-level mapping and forest inventory.",
+    "tags": [
+      "Point Clouds",
+      "Sensor Fusion",
+      "3D Mapping"
+    ],
+    "image": "",
+    "image_alt": "",
+    "paper_url": "",
+    "demo_url": "",
+    "code_url": ""
+  },
+  {
+    "category": "Neural Reconstruction",
+    "title": "LiDAR-Assisted 3D Gaussian Splatting",
+    "description": "Exploring geometry-informed 3D scene reconstruction using image-based rendering and LiDAR-derived structure.",
+    "tags": [
+      "3DGS",
+      "Reconstruction",
+      "Geometry"
+    ],
+    "image": "",
+    "image_alt": "",
+    "paper_url": "",
+    "demo_url": "",
+    "code_url": ""
+  }
+]

@@ -1,0 +1,24 @@
+{
+  "name": "Chunxi Zhao",
+  "eyebrow": "Ph.D. Researcher · Purdue University",
+  "headline": "SLAM and 3D Perception Engineer & Researcher",
+  "intro": "I work on localization, LiDAR mapping, and 3D reconstruction, combining practical engineering experience with research in large-scale spatial perception systems.",
+  "skills": [
+    "LiDAR SLAM",
+    "Localization & Mapping",
+    "3D Perception",
+    "3D Reconstruction"
+  ],
+  "hero_image": "",
+  "hero_image_alt": "",
+  "projects_intro": "Representative work across LiDAR mapping, forest reconstruction, and spatial AI.",
+  "about_paragraph_1": "I'm a Ph.D. researcher at Purdue University working at the intersection of geometric perception, localization, and 3D mapping.",
+  "about_paragraph_2": "My background includes five years of industry experience alongside academic research, with a focus on building reliable methods for real-world spatial data.",
+  "contact_heading": "Let's connect.",
+  "contact_message": "Open to opportunities in SLAM, 3D perception, localization, and spatial computing.",
+  "email": "",
+  "resume": "",
+  "linkedin": "",
+  "scholar": "",
+  "github": ""
+}

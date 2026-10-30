@@ -75,14 +75,29 @@
     @media(max-width: 850px) { .hero { grid-template-columns: 1fr; padding-top: 55px; gap: 25px; } .hero-art { min-height: 270px; } .art-svg { max-width: 340px; } .projects { grid-template-columns: 1fr 1fr; } .two-col { grid-template-columns: 1fr; gap: 15px; } }
     @media(max-width: 590px) { .wrap { width: min(100% - 32px, 1080px); } .nav-inner { min-height: 62px; } .nav-links { gap: 12px; } .nav-links a { font-size: 11px; } .hero { padding-top: 40px; } h1 { font-size: 49px; } .section { padding-bottom: 40px; } .section-header { align-items: start; display: block; } .section-header p { margin-top: 9px; } .projects { grid-template-columns: 1fr; } .project p { min-height: auto; } .project-visual { height: 120px; } .contact { padding: 23px; align-items: start; flex-direction: column; } .footer { flex-direction: column; } }
     @media(prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .project { transition: none; } }
+    /* Added for Pages CMS: project covers, links, optional publications. */
+    .project-visual.has-image::before { content: ""; display: block; position: absolute; inset: 0; width: 100%; height: 100%; background: linear-gradient(180deg,transparent 30%,rgba(9,28,53,.72)); border: none; border-radius: 0; transform: none; z-index: 1; }
+    .project-visual.has-image::after { display: none; }
+    .project-cover { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .project-links { display: flex; flex-wrap: wrap; gap: 13px; padding-top: 13px; }
+    .project-links a { font-size: 12px; font-weight: 700; color: var(--accent); text-decoration: none; }
+    .project-links a:hover { text-decoration: underline; }
+    .hero-art-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 3; }
+    .publication-list { display: grid; gap: 12px; }
+    .publication-item { border: 1px solid var(--line); border-radius: 14px; background: #fff; padding: 19px 22px; }
+    .publication-item h3 { font-size: 15px; margin: 0 0 5px; line-height: 1.4; }
+    .publication-item p { color: var(--muted); margin: 0; font-size: 13px; }
+    .publication-item a { display: inline-block; font-size: 12px; font-weight: 700; text-decoration: none; color: var(--accent); margin-top: 8px; }
+    .publication-item a:hover { text-decoration: underline; }
   </style>
-<script type="text/javascript" nonce="058c3bdee1bc46cc9f2e9852d76" src="//local.adguard.org?ts=1793391752445&amp;type=content-script&amp;dmn=chatgpt.com&amp;url=https%3A%2F%2Fchatgpt.com%2Fbackend-api%2Festuary%2Fcontent%3Fid%3Dfile_000000001bdc81f5bd1ed18c3fa7b5ed%26fn%3Dindex.html%26cd%3Dattachment%26ts%3D498164%26p%3Dfs%26cid%3D1%26sig%3D8c2d0b851dbe1403c045344de7d9b66f67bbdcc471813baae552028e226e8d79%26v%3D0&amp;app=chrome.exe&amp;css=2&amp;js=1&amp;rel=1&amp;rji=1&amp;sbe=1&amp;stealth=1&amp;st-wrtc&amp;st-dnt"></script><script type="text/javascript" nonce="058c3bdee1bc46cc9f2e9852d76" src="//local.adguard.org?ts=1793391752445&amp;name=AdGuard%20Extra&amp;name=AdGuard%20Popup%20Blocker&amp;type=user-script"></script></head>
+</head>
 <body>
   <header class="nav">
     <div class="wrap nav-inner">
       <a class="brand" href="#top">CZ<span style="color:var(--accent)">.</span></a>
       <nav class="nav-links" aria-label="Main navigation">
         <a href="#projects">Projects</a>
+        <a href="#publications" id="publications-nav" hidden>Publications</a>
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
       </nav>
@@ -92,11 +107,11 @@
   <main id="top" class="wrap">
     <div class="hero">
       <div>
-        <div class="eyebrow">Ph.D. Researcher · Purdue University</div>
-        <h1>Chunxi Zhao<span style="color:var(--accent)">.</span></h1>
-        <p class="hero-title">SLAM and 3D Perception Engineer &amp; Researcher</p>
-        <p class="hero-desc">I work on localization, LiDAR mapping, and 3D reconstruction, combining practical engineering experience with research in large-scale spatial perception systems.</p>
-        <div class="chips">
+        <div class="eyebrow" id="hero-eyebrow">Ph.D. Researcher · Purdue University</div>
+        <h1><span id="hero-name">Chunxi Zhao</span><span style="color:var(--accent)">.</span></h1>
+        <p class="hero-title" id="hero-title">SLAM and 3D Perception Engineer &amp; Researcher</p>
+        <p class="hero-desc" id="hero-desc">I work on localization, LiDAR mapping, and 3D reconstruction, combining practical engineering experience with research in large-scale spatial perception systems.</p>
+        <div class="chips" id="hero-skills">
           <span class="chip">LiDAR SLAM</span><span class="chip">Localization &amp; Mapping</span><span class="chip">3D Perception</span><span class="chip">3D Reconstruction</span>
         </div>
         <div class="actions">
@@ -104,7 +119,7 @@
           <a class="button secondary" id="resume-link" href="#" hidden>Download résumé</a>
         </div>
       </div>
-      <div class="hero-art" aria-hidden="true">
+      <div class="hero-art" id="hero-art" aria-hidden="true">
         <svg class="art-svg" viewBox="0 0 450 370" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <linearGradient id="blue" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#376de2"/><stop offset="1" stop-color="#61a5ea"/></linearGradient>
@@ -127,16 +142,16 @@
             <circle cx="99" cy="241" r="2"/><circle cx="123" cy="244" r="1.9"/><circle cx="146" cy="255" r="1.8"/><circle cx="176" cy="275" r="2"/><circle cx="217" cy="304" r="1.8"/><circle cx="263" cy="289" r="2.2"/><circle cx="302" cy="261" r="1.9"/><circle cx="325" cy="243" r="2"/><circle cx="360" cy="224" r="1.8"/><circle cx="96" cy="165" r="1.7"/><circle cx="143" cy="144" r="1.8"/><circle cx="183" cy="119" r="2"/><circle cx="218" cy="69" r="1.9"/><circle cx="265" cy="92" r="2.1"/><circle cx="306" cy="110" r="1.9"/><circle cx="356" cy="149" r="1.8"/>
           </g>
         </svg>
-        <div class="art-label">Spatial perception · 3D geometry</div>
+        <div class="art-label" id="hero-art-label">Spatial perception · 3D geometry</div>
       </div>
     </div>
 
     <section id="projects" class="section">
       <div class="section-header">
         <div><div class="eyebrow">Selected work</div><h2>Projects &amp; research</h2></div>
-        <p>Representative work across LiDAR mapping, forest reconstruction, and spatial AI.</p>
+        <p id="projects-intro">Representative work across LiDAR mapping, forest reconstruction, and spatial AI.</p>
       </div>
-      <div class="projects">
+      <div class="projects" id="project-grid">
         <article class="project">
           <div class="project-visual v-one"><span class="visual-label">Mapping &amp; Optimization</span><span class="visual-index">01</span></div>
           <div class="project-body">
@@ -164,15 +179,20 @@
       </div>
     </section>
 
+    <section id="publications" class="section" hidden>
+      <div class="section-header"><div><div class="eyebrow">Selected publications</div><h2>Publications</h2></div></div>
+      <div class="publication-list" id="publication-list"></div>
+    </section>
+
     <section id="about" class="section">
       <div class="section-header"><div><div class="eyebrow">Background</div><h2>About me</h2></div></div>
       <div class="two-col">
         <div>
-          <p>I'm a Ph.D. researcher at Purdue University working at the intersection of geometric perception, localization, and 3D mapping.</p>
-          <p>My background includes five years of industry experience alongside academic research, with a focus on building reliable methods for real-world spatial data.</p>
+          <p id="about-paragraph-1">I'm a Ph.D. researcher at Purdue University working at the intersection of geometric perception, localization, and 3D mapping.</p>
+          <p id="about-paragraph-2">My background includes five years of industry experience alongside academic research, with a focus on building reliable methods for real-world spatial data.</p>
           <div class="socials" id="social-links"></div>
         </div>
-        <div class="timeline">
+        <div class="timeline" id="experience-list">
           <div class="timeline-item"><h3>Purdue University</h3><div class="sub">Ph.D. Research</div><p>LiDAR-based mapping, 3D reconstruction, geometric optimization, and multi-sensor data integration.</p></div>
           <div class="timeline-item"><h3>DeepRoute.ai</h3><div class="sub">Industry Experience</div><p>Prior industry work in autonomous-driving-related perception and mapping systems.</p></div>
         </div>
@@ -181,43 +201,189 @@
 
     <section id="contact" class="section">
       <div class="contact">
-        <div><div class="eyebrow">Get in touch</div><h2>Let's connect.</h2><p>Open to opportunities in SLAM, 3D perception, localization, and spatial computing.</p></div>
+        <div><div class="eyebrow">Get in touch</div><h2 id="contact-heading">Let's connect.</h2><p id="contact-message">Open to opportunities in SLAM, 3D perception, localization, and spatial computing.</p></div>
         <a class="button" id="contact-button" href="mailto:" hidden>Email me →</a>
-        <span id="contact-prompt" style="color:#687c98;font-size:13px">Add your email in the configuration to enable contact.</span>
+        <span id="contact-prompt" hidden></span>
       </div>
     </section>
   </main>
-  <footer class="wrap footer"><span>© <span id="year">2026</span> Chunxi Zhao</span><span>Built with GitHub Pages · <a href="#top">Back to top ↑</a></span></footer>
+  <footer class="wrap footer"><span>© <span id="year">2026</span> <span id="footer-name">Chunxi Zhao</span></span><span>Built with GitHub Pages · <a href="#top">Back to top ↑</a></span></footer>
 
   <script>
-    /* ============================================================
-       EDIT ONLY THE VALUES BELOW TO ADD YOUR OWN CONTACT LINKS.
-       Leave any value as "" to hide that link automatically.
-       To add a resume, upload a PDF named resume.pdf and use
-       resume: "resume.pdf".
-       ============================================================ */
-    const CONTACT = {
-      email: "",
-      resume: "",
-      github: "",
-      linkedin: "",
-      scholar: ""
-    };
-
-    const resumeLink = document.getElementById("resume-link");
-    if (CONTACT.resume) { resumeLink.href = CONTACT.resume; resumeLink.hidden = false; }
-    const contactButton = document.getElementById("contact-button");
-    if (CONTACT.email) { contactButton.href = "mailto:" + CONTACT.email; contactButton.hidden = false; document.getElementById("contact-prompt").hidden = true; }
-    const socialContainer = document.getElementById("social-links");
-    for (const [key, label] of [["github","GitHub ↗"],["linkedin","LinkedIn ↗"],["scholar","Google Scholar ↗"]]) {
-      if (CONTACT[key]) {
-        const link = document.createElement("a");
-        link.href = CONTACT[key]; link.textContent = label;
-        link.rel = "noopener noreferrer"; link.target = "_blank";
-        socialContainer.appendChild(link);
+    /*
+      This site is edited using Pages CMS: https://app.pagescms.org
+      Site text: content/site.json
+      Projects: content/projects.json
+      Experience: content/experience.json
+      Publications: content/publications.json
+      Edit those in Pages CMS, not in this HTML file.
+    */
+    (() => {
+      "use strict";
+      const $ = id => document.getElementById(id);
+      const plain = value => typeof value === "string" ? value.trim() : "";
+      const arr = value => Array.isArray(value) ? value : [];
+      const text = (id, value) => {
+        if (typeof value === "string" && $(id)) $(id).textContent = value;
+      };
+      function safeUrl(value) {
+        const v = plain(value);
+        if (!v) return "";
+        try {
+          const u = new URL(v, document.baseURI);
+          return u.protocol === "https:" || u.protocol === "http:" ? u.href : "";
+        } catch { return ""; }
       }
-    }
-    document.getElementById("year").textContent = new Date().getFullYear();
+      function el(tag, cls, textValue) {
+        const node = document.createElement(tag);
+        if (cls) node.className = cls;
+        if (textValue !== undefined) node.textContent = String(textValue);
+        return node;
+      }
+      function externalLink(value, title, className) {
+        const href = safeUrl(value);
+        if (!href) return null;
+        const link = el("a", className, title);
+        link.href = href;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        return link;
+      }
+      function renderHomepage(data) {
+        if (!data || typeof data !== "object" || Array.isArray(data)) return;
+        text("hero-name", data.name);
+        text("footer-name", data.name);
+        text("hero-eyebrow", data.eyebrow);
+        text("hero-title", data.headline);
+        text("hero-desc", data.intro);
+        text("projects-intro", data.projects_intro);
+        text("about-paragraph-1", data.about_paragraph_1);
+        text("about-paragraph-2", data.about_paragraph_2);
+        text("contact-heading", data.contact_heading);
+        text("contact-message", data.contact_message);
+        const title = plain(data.name);
+        if (title) document.title = title + " | SLAM & 3D Perception";
+        const meta = document.querySelector('meta[name="description"]');
+        if (meta && plain(data.intro)) meta.content = plain(data.intro);
+
+        const skills = $("hero-skills");
+        skills.replaceChildren(...arr(data.skills).map(plain).filter(Boolean).map(x => el("span", "chip", x)));
+        skills.hidden = !skills.childElementCount;
+
+        const heroArt = $("hero-art");
+        const existingImage = $("hero-custom-image");
+        if (existingImage) existingImage.remove();
+        const imageUrl = safeUrl(data.hero_image);
+        if (imageUrl) {
+          const img = el("img", "hero-art-image");
+          img.id = "hero-custom-image";
+          img.src = imageUrl;
+          img.alt = plain(data.hero_image_alt) || "Featured spatial reconstruction project";
+          img.loading = "lazy";
+          heroArt.appendChild(img);
+        }
+
+        const resumeLink = $("resume-link");
+        const resumeUrl = safeUrl(data.resume);
+        resumeLink.hidden = !resumeUrl;
+        if (resumeUrl) resumeLink.href = resumeUrl;
+
+        const email = plain(data.email);
+        const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        $("contact-button").hidden = !validEmail;
+        $("contact-prompt").hidden = true;
+        if (validEmail) $("contact-button").href = "mailto:" + email;
+
+        const socials = $("social-links");
+        socials.replaceChildren();
+        for (const [key, label] of [["linkedin", "LinkedIn ↗"], ["scholar", "Google Scholar ↗"], ["github", "GitHub ↗"]]) {
+          const link = externalLink(data[key], label);
+          if (link) socials.appendChild(link);
+        }
+      }
+      function renderProjects(data) {
+        if (!Array.isArray(data)) return;
+        const target = $("project-grid");
+        target.replaceChildren();
+        data.forEach((project, i) => {
+          if (!project || typeof project !== "object") return;
+          const article = el("article", "project");
+          const visual = el("div", "project-visual v-" + ["one", "two", "three"][i%3]);
+          const imageUrl = safeUrl(project.image);
+          if (imageUrl) {
+            visual.classList.add("has-image");
+            const img = el("img", "project-cover");
+            img.src = imageUrl;
+            img.alt = plain(project.image_alt) || plain(project.title) || "Project illustration";
+            img.loading = "lazy";
+            visual.appendChild(img);
+          }
+          visual.appendChild(el("span", "visual-label", plain(project.category)));
+          visual.appendChild(el("span", "visual-index", String(i + 1).padStart(2, "0")));
+          article.appendChild(visual);
+          const body = el("div", "project-body");
+          body.appendChild(el("h3", "", plain(project.title)));
+          body.appendChild(el("p", "", plain(project.description)));
+          const tags = el("div", "tags");
+          arr(project.tags).map(plain).filter(Boolean).forEach(t => tags.appendChild(el("span", "tag", t)));
+          body.appendChild(tags);
+          const links = el("div", "project-links");
+          for (const [key, label] of [["paper_url", "Paper ↗"], ["demo_url", "Demo ↗"], ["code_url", "Code ↗"]]) {
+            const link = externalLink(project[key], label);
+            if (link) links.appendChild(link);
+          }
+          if (links.childElementCount) body.appendChild(links);
+          article.appendChild(body);
+          target.appendChild(article);
+        });
+      }
+      function renderExperience(data) {
+        if (!Array.isArray(data)) return;
+        const target = $("experience-list");
+        target.replaceChildren();
+        data.forEach(item => {
+          if (!item || typeof item !== "object") return;
+          const card = el("div", "timeline-item");
+          card.appendChild(el("h3", "", plain(item.organization)));
+          card.appendChild(el("div", "sub", plain(item.role)));
+          card.appendChild(el("p", "", plain(item.description)));
+          target.appendChild(card);
+        });
+      }
+      function renderPublications(data) {
+        if (!Array.isArray(data)) return;
+        const target = $("publication-list");
+        target.replaceChildren();
+        data.forEach(item => {
+          if (!item || typeof item !== "object" || !plain(item.title)) return;
+          const card = el("article", "publication-item");
+          card.appendChild(el("h3", "", plain(item.title)));
+          if (plain(item.authors)) card.appendChild(el("p", "", plain(item.authors)));
+          const journal = [plain(item.venue), plain(item.year)].filter(Boolean).join(" · ");
+          if (journal) card.appendChild(el("p", "", journal));
+          const link = externalLink(item.url, "View paper ↗");
+          if (link) card.appendChild(link);
+          target.appendChild(card);
+        });
+        const show = target.childElementCount > 0;
+        $("publications").hidden = !show;
+        $("publications-nav").hidden = !show;
+      }
+      async function loadJSON(path, render) {
+        try {
+          const response = await fetch(path, { cache: "no-store" });
+          if (!response.ok) throw new Error("HTTP " + response.status);
+          render(await response.json());
+        } catch (error) {
+          console.warn("Could not load " + path + "; keeping existing page content.", error);
+        }
+      }
+      $("year").textContent = new Date().getFullYear();
+      loadJSON("content/site.json", renderHomepage);
+      loadJSON("content/projects.json", renderProjects);
+      loadJSON("content/experience.json", renderExperience);
+      loadJSON("content/publications.json", renderPublications);
+    })();
   </script>
 </body>
 </html>
