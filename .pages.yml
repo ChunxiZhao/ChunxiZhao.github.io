@@ -1,0 +1,156 @@
+# Pages CMS (https://pagescms.org). Keep this file in the repository root.
+# GitHub Pages continues hosting the website at https://chunxizhao.github.io/
+media:
+  input: media
+  output: /media
+  rename: safe
+
+content:
+  - name: homepage
+    label: "01 · 首页与联系方式"
+    type: file
+    path: content/site.json
+    format: json
+    operations:
+      delete: false
+    fields:
+      - name: name
+        label: "姓名 / Name"
+        type: string
+        required: true
+      - name: eyebrow
+        label: "姓名上方的小字 / Affiliation"
+        type: string
+      - name: headline
+        label: "职业标题 / Headline"
+        type: string
+      - name: intro
+        label: "首页个人介绍 / Introduction"
+        type: text
+      - name: skills
+        label: "技能标签 / Skills（可添加、删除）"
+        type: string
+        list: true
+      - name: hero_image
+        label: "首页右侧图片（留空则显示现有几何图）"
+        type: image
+      - name: hero_image_alt
+        label: "首页图片说明 / Image description"
+        type: string
+      - name: projects_intro
+        label: "项目区右上方说明 / Projects intro"
+        type: text
+      - name: about_paragraph_1
+        label: "About Me 第一段"
+        type: text
+      - name: about_paragraph_2
+        label: "About Me 第二段"
+        type: text
+      - name: contact_heading
+        label: "联系区标题 / Contact heading"
+        type: string
+      - name: contact_message
+        label: "联系区文字 / Contact message"
+        type: text
+      - name: email
+        label: "Email（公开展示，请填求职邮箱）"
+        type: string
+      - name: resume
+        label: "PDF 简历（上传文件后自动生成下载按钮）"
+        type: file
+        options:
+          extensions: [pdf]
+      - name: linkedin
+        label: "LinkedIn 个人主页 URL"
+        type: string
+      - name: scholar
+        label: "Google Scholar URL"
+        type: string
+      - name: github
+        label: "GitHub URL（可留空隐藏）"
+        type: string
+
+  - name: projects
+    label: "02 · 项目 / Projects"
+    type: file
+    path: content/projects.json
+    format: json
+    list: true
+    operations:
+      delete: false
+    fields:
+      - name: category
+        label: "封面标签 / Category"
+        type: string
+      - name: title
+        label: "项目名称 / Project title"
+        type: string
+        required: true
+      - name: description
+        label: "项目简介 / Description"
+        type: text
+      - name: image
+        label: "项目封面图片（可直接上传）"
+        type: image
+      - name: image_alt
+        label: "图片说明 / Alt text"
+        type: string
+      - name: tags
+        label: "技术标签 / Tags"
+        type: string
+        list: true
+      - name: paper_url
+        label: "论文链接 / Paper URL"
+        type: string
+      - name: demo_url
+        label: "演示视频或项目网址 / Demo URL"
+        type: string
+      - name: code_url
+        label: "代码链接（不公开代码可留空）"
+        type: string
+
+  - name: experience
+    label: "03 · 研究与工作经历"
+    type: file
+    path: content/experience.json
+    format: json
+    list: true
+    operations:
+      delete: false
+    fields:
+      - name: organization
+        label: "单位 / Organization"
+        type: string
+        required: true
+      - name: role
+        label: "角色 / Role"
+        type: string
+      - name: description
+        label: "内容 / Description"
+        type: text
+
+  - name: publications
+    label: "04 · 论文 / Publications"
+    type: file
+    path: content/publications.json
+    format: json
+    list: true
+    operations:
+      delete: false
+    fields:
+      - name: title
+        label: "论文标题 / Title"
+        type: string
+        required: true
+      - name: authors
+        label: "作者 / Authors"
+        type: string
+      - name: venue
+        label: "期刊或会议 / Journal or conference"
+        type: string
+      - name: year
+        label: "年份 / Year"
+        type: string
+      - name: url
+        label: "论文链接 / URL"
+        type: string
